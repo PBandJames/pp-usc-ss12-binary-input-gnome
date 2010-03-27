@@ -3,7 +3,7 @@
 # Caribou - text entry and UI navigation application
 #
 # Copyright (C) 2010 John Kim <kim19@usc.edu>
-# Copyright (C) 2010 Justin Lei <justinyl@usc.edu>
+# Copyright (C) 2010 Justin Lei <lei.justin@gmail.com>
 # Copyright (C) 2010 Matthew Michihara <michihar@usc.edu>
 # Copyright (C) 2010 James Myoung <jkmyoung@usc.edu>
 # Copyright (C) 2010 Benjamin Walker <bwwalker@usc.edu>

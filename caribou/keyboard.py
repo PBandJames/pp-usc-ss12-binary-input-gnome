@@ -126,7 +126,7 @@ class CaribouKeyboard(gtk.Frame):
                     for key in row:
                         # check if the key is defined by a string or a tuple
                         if isinstance(key, str):
-                            #print key
+                            print key
                             if key == "pf":
                                 # preferences key
                                 button = gtk.Button()
@@ -146,10 +146,14 @@ class CaribouKeyboard(gtk.Frame):
                                 button.connect("clicked", self._send_unicode, char)
                                 self.colorHandler.addButton(button, key);
                         elif isinstance(key, tuple):
-                            #for symbol in key:
-                                #print symbol
+                            for symbol in key:
+                                print symbol
                             button = gtk.Button(key[0])
                             button.set_use_underline(False)
+
+                            if key[1] == 65408:
+                              self.colorHandler.addButton(button, key[1]);
+                              print "blah!"
 
                             # check if this key is a layer switch key or not
                             if isinstance(key[1], str):

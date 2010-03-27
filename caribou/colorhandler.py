@@ -24,17 +24,20 @@ class ColorHandler:
         colorMap = {ColorOptions.standard: standardColor, ColorOptions.morseLeftNode: morseLeftNodeColor, ColorOptions.morseRightNode: morseRightNodeColor, ColorOptions.morseCurrentNode: morseCurrentNodeColor}  #Map linking ColorOptions enum to the actual color they represent
 
     def execute(self, node):
+        print "1"
         button = self.buttonList.get(node.value)
+        print "2"
         if button != None:
             button.clicked()
+            #button.clicked()
+        print "3"
 
     def addButton(self, button, label):
         if self.buttonList.get(label) == None:
             self.buttonList[label] = button
         #if label == "num_punc":
             #self.setColor(button, ColorOptions.morseLeftNode)
-        if label == "abc":
-            print "sawabc"
+        #if label == "abc":
             #self.setColor(button, ColorOptions.morseRightNode)
 
     def setColorFromEncodedChar(self, encodedchar, colorOption):
