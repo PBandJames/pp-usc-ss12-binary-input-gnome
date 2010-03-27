@@ -68,22 +68,28 @@ class ColorHandler:
         rightNode = startingNode.right
 
         if leftNode != None:
-            self.setColorFromChar(leftNode.value.lower(), 
+            #self.setColorFromChar(leftNode.value.lower(), 
+            #ColorOptions.morseLeftNode) #color our direct descendant in lowercase
+            self.setColorFromChar(leftNode.value, 
             ColorOptions.morseLeftNode) #color our direct descendant in lowercase
             self.recursiveColorNodes(leftNode, ColorOptions.morseLeftNode) 
         if rightNode != None:
-            self.setColorFromChar(rightNode.value.lower(), 
+            #self.setColorFromChar(rightNode.value.lower(), 
+            #ColorOptions.morseRightNode) #color our direct descendant in lowercase
+            self.setColorFromChar(rightNode.value, 
             ColorOptions.morseRightNode) #color our direct descendant in lowercase
             self.recursiveColorNodes(rightNode, ColorOptions.morseRightNode)
 
     def recursiveColorNodes(self, startingNode, color):
         if startingNode.left != None: #If we have an instantiated node to go to
-            self.setColorFromChar(startingNode.left.value.lower(), color)
-            self.setColorFromChar(startingNode.left.value.capitalize(), color)
+            self.setColorFromChar(startingNode.left.value, color)
+            #self.setColorFromChar(startingNode.left.value.lower(), color)
+            #self.setColorFromChar(startingNode.left.value.capitalize(), color)
             self.recursiveColorNodes(startingNode.left, color)
         if startingNode.right != None: #If we have an instantiated node to go to
-            self.setColorFromChar(startingNode.right.value.lower(), color)
-            self.setColorFromChar(startingNode.right.value.capitalize(), color)
+            self.setColorFromChar(startingNode.right.value, color)
+            #self.setColorFromChar(startingNode.right.value.lower(), color)
+            #self.setColorFromChar(startingNode.right.value.capitalize(), color)
             self.recursiveColorNodes(startingNode.right, color)
   
     #the following is all stuff related to making ColorHandler be a singleton

@@ -140,8 +140,7 @@ class CaribouKeyboard(gtk.Frame):
                             else:
                                 # single utf-8 character key
                                 button = gtk.Button(key)
-				button.set_use_underline(False)
-
+                                button.set_use_underline(False)
                                 char = ord(key.decode('utf-8'))
                                 button.connect("clicked", self._send_unicode, char)
                                 self.colorHandler.addButton(button, key);
@@ -151,8 +150,8 @@ class CaribouKeyboard(gtk.Frame):
                             button = gtk.Button(key[0])
                             button.set_use_underline(False)
 
-                            if key[1] == 65408: #this is the space character
-                              self.colorHandler.addButton(button, key[1]);
+                            #if key[1] == 65408: #this is the space character
+                              #self.colorHandler.addButton(button, key[1]);
 
                             # check if this key is a layer switch key or not
                             if isinstance(key[1], str):
@@ -168,6 +167,7 @@ class CaribouKeyboard(gtk.Frame):
                             else:
                                 # regular key
                                 button.connect("clicked", self._send_keysym, key[1])				
+                                self.colorHandler.addButton(button, key[1]);
 				#self.colorHandler.addButton(button, colorhandler.ColorOptions.test) we don't color this currently
 			
                         else:
