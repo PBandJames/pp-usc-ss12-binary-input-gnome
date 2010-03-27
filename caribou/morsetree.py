@@ -114,15 +114,19 @@ def get_morse_tree():
     node_dollar = TreeNode("$")
     node_open_parentheses = TreeNode("(")
     node_close_parentheses = TreeNode(")")
-    node_up = TreeNode("up")
-    node_down = TreeNode("down")
-    node_left = TreeNode("left")
-    node_right = TreeNode("right")
+    node_up = TreeNode(65362)
+    node_down = TreeNode(65364)
+    node_left = TreeNode(65361)
+    node_right = TreeNode(65363)
 
     # control keys (pref/num and punctuation)
     node_pf = TreeNode("pf");
     node_num_punct = TreeNode("num_punct")
     node_abc = TreeNode("abc")
+    node_enter = TreeNode(65293)
+    node_delete = TreeNode(65288)
+    node_uppercase = TreeNode("uppercase")
+
 
     # first level
     root.left = node_e
@@ -153,8 +157,10 @@ def get_morse_tree():
     node_s.right = node_v
 
     node_u.left = node_f
+    node_u.left = node_enter
 
     node_r.left = node_l
+    node_r.right = node_delete
 
     node_w.left = node_p
     node_w.right = node_j
@@ -170,6 +176,9 @@ def get_morse_tree():
 
     node_o.left = node_pf
     node_o.right = node_num_punct
+
+    # fifth level
+    node_h.left = node_uppercase
 
     # second tree
     node_abc.left = node_period
