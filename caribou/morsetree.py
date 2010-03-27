@@ -21,7 +21,7 @@ class MorseTree:
     def reset(self):
         if self.current_tree == "alpha":
             self.current_node = self.alpha_root
-        if self.current_tree == "num_punct":
+        if self.current_tree == "num_punc":
             self.current_node = self.num_punct_root
 
     def dot(self):
@@ -43,9 +43,9 @@ class MorseTree:
 
     def switch_trees(self):
         if self.current_tree == "alpha":
-            self.current_tree = "num_punct"
+            self.current_tree = "num_punc"
             self.current_node = self.num_punct_root
-        elif self.current_tree == "num_punct":
+        elif self.current_tree == "num_punc":
             self.current_tree = "alpha"
             self.current_node = self.alpha_root
 
@@ -121,8 +121,8 @@ def get_morse_tree():
 
     # control keys (pref/num and punctuation)
     node_pf = TreeNode("pf");
-    node_num_punct1 = TreeNode("num_punct1")
-    node_num_punct2 = TreeNode("num_punct2")
+    node_num_punc = TreeNode("num_punc")
+    node_abc = TreeNode("abc")
 
     # first level
     root.left = node_e
@@ -169,20 +169,20 @@ def get_morse_tree():
     node_g.right = node_q
 
     node_o.left = node_pf
-    node_o.right = node_num_punct1
+    node_o.right = node_num_punc
 
-    # fifth level
-    node_num_punct2.left = node_period
-    node_num_punct2.right = node_comma
+    # second tree
+    node_abc.left = node_period
+    node_abc.right = node_comma
 
-    # sixth level
+    # 
     node_period.left = node_question
     node_period.right = node_exclamation
 
     node_comma.left = node_at
     node_comma.right = node_0
 
-    # seventh level
+    #
     node_question.left = node_1
     node_question.right = node_2
 
@@ -195,7 +195,7 @@ def get_morse_tree():
     node_0.left = node_7
     node_0.right = node_8
 
-    # eighth level
+    # 
     node_1.left = node_9
     node_1.right = node_underscore
 
@@ -224,5 +224,5 @@ def get_morse_tree():
     node_down.left = node_left;
     node_down.right = node_right;
 
-    return MorseTree(root, node_num_punct2)
+    return MorseTree(root, node_abc)
 
