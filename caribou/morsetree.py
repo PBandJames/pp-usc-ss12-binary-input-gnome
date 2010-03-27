@@ -157,7 +157,7 @@ def get_morse_tree():
     node_s.right = node_v
 
     node_u.left = node_f
-    node_u.left = node_enter
+    node_u.right = node_enter
 
     node_r.left = node_l
     node_r.right = node_delete
