@@ -12,12 +12,17 @@ class TreeNode:
         return self.value
 
 class MorseTree:
-    def __init__(self, root):
-        self.root = root
-        self.current_node = root
+    def __init__(self, alpha_root, num_punct_node):
+        self.alpha_root = alpha_root
+        self.current_node = alpha_root
+        self.num_punct_root = num_punct_node
+        self.current_tree = "alpha"
 
     def reset(self):
-        self.current_node = self.root
+        if self.current_tree == "alpha":
+            self.current_node = self.alpha_root
+        if self.current_tree == "num_punct":
+            self.current_node = self.num_punct_root
 
     def dot(self):
         self.current_node = self.current_node.left
@@ -35,6 +40,14 @@ class MorseTree:
 
     def get_current_node(self):
         return self.current_node
+
+    def switch_trees(self):
+        if self.current_tree == "alpha":
+            self.current_tree = "num_punct"
+            self.current_node = self.num_punct_root
+        elif self.current_tree == "num_punct":
+            self.current_tree = "alpha"
+            self.current_node = self.alpha_root
 
     def __str__(self):
         return self.current_node.value
@@ -101,10 +114,15 @@ def get_morse_tree():
     node_dollar = TreeNode("$")
     node_open_parentheses = TreeNode("(")
     node_close_parentheses = TreeNode(")")
+    node_up = TreeNode("up")
+    node_down = TreeNode("down")
+    node_left = TreeNode("left")
+    node_right = TreeNode("right")
 
     # control keys (pref/num and punctuation)
     node_pf = TreeNode("pf");
-    node_layer = TreeNode("num_punct");
+    node_num_punct1 = TreeNode("num_punct1")
+    node_num_punct2 = TreeNode("num_punct2")
 
     # first level
     root.left = node_e
@@ -135,10 +153,8 @@ def get_morse_tree():
     node_s.right = node_v
 
     node_u.left = node_f
-    #node_u.right = node_quote
 
     node_r.left = node_l
-    #node_r.right = node_apostrophe
 
     node_w.left = node_p
     node_w.right = node_j
@@ -153,50 +169,60 @@ def get_morse_tree():
     node_g.right = node_q
 
     node_o.left = node_pf
-    node_o.right = node_layer
-	
-    #node_o.left = node_comma
-    #node_o.right = node_period
+    node_o.right = node_num_punct1
 
-    #fifth level
-    node_h.left = node_5
-    node_h.right = node_4
+    # fifth level
+    node_num_punct2.left = node_period
+    node_num_punct2.right = node_comma
 
-    node_v.left = node_underscore
-    node_v.right = node_3
+    # sixth level
+    node_period.left = node_question
+    node_period.right = node_exclamation
 
-    #node_quote.left = nothing
-    node_quote.right = node_2
-	
-    node_apostrophe.left = node_plus
-    node_apostrophe.right = node_dash
+    node_comma.left = node_at
+    node_comma.right = node_0
 
-    #node_j.left = nothing
-    node_j.right = node_1
+    # seventh level
+    node_question.left = node_1
+    node_question.right = node_2
 
-    node_b.left = node_6
-    node_b.right = node_equals
-	
-    node_x.left = node_slash
-    node_x.right = node_backslash
+    node_exclamation.left = node_3
+    node_exclamation.right = node_4
 
-    node_c.left = node_question
-    node_c.right = node_exclamation
+    node_at.left = node_5
+    node_at.right = node_6
 
-    node_y.left = node_open_parentheses
-    node_y.right = node_close_parentheses
+    node_0.left = node_7
+    node_0.right = node_8
 
-    node_z.left = node_7
-    node_z.right = node_at
+    # eighth level
+    node_1.left = node_9
+    node_1.right = node_underscore
 
-    node_q.left = node_colon
-    node_q.right = node_semicolon
+    node_2.left = node_quote
+    node_2.right = node_apostrophe
 
-    node_comma.left = node_8
-    node_comma.right = node_dollar
+    node_3.left = node_dash
+    node_3.right = node_slash
 
-    node_period.left = node_9
-    node_period.right = node_0
+    node_4.left = node_open_parentheses
+    node_4.right = node_close_parentheses
 
-    return MorseTree(root)
+    node_5.left = node_backslash
+    node_5.right = node_colon
+
+    node_6.left = node_semicolon
+    node_6.right = node_dollar
+
+    node_7.left = node_plus
+    node_7.right = node_equals
+
+    node_8.left = node_up
+    node_8.right = node_down
+
+    # ninth level
+    node_down.left = node_left;
+    node_down.right = node_right;
+
+    return MorseTree(root, node_num_punct2)
 
