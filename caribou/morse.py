@@ -62,8 +62,8 @@ class Morse:
         # lower-case letters instead of upper-case; because we're using
         # l-shift and r-shift as our two buttons, it capitalizes whatever
         # we type. We'll start with caps-lock on to reverse that.
-        #self.vk.press_keycode(66)    # 66 is capslock
-        #self.vk.release_keycode(66)
+        self.vk.press_keycode(66)    # 66 is capslock
+        self.vk.release_keycode(66)
 
     def registerListener(self, callback):
         self.tree_update_callback = callback
