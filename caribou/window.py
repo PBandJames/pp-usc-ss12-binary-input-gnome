@@ -23,7 +23,6 @@ import gconf
 import gtk
 import gtk.gdk as gdk
 import keyboard
-import treeWindow
 import opacity
 import colorhandler
     
@@ -46,8 +45,6 @@ class CaribouWindow(gtk.Window):
         #label = gtk.Label("Hello World")
         #label.set_alignment(0, 0)
         self.colorHandler = colorhandler.ColorHandler()
-        self.tw = treeWindow.TreeWindow()
-        self._hbox.pack_start(self.tw)
         #label.show()
         
         self.connect("size-allocate", lambda w, a: self._update_position())
@@ -59,7 +56,6 @@ class CaribouWindow(gtk.Window):
             CaribouWindowPlacement()
 
     def update(self, node, isExecute):
-        self.tw.refresh(node)
         self.colorHandler.colorKeys(node)
         if isExecute == True:
             self.colorHandler.execute(node)
@@ -76,25 +72,6 @@ class CaribouWindow(gtk.Window):
         self._default_placement = default_placement
         self._update_position()
         
-    def refreshTree(self, currentNode):
-        self.tw.refresh(currentNode)
-        if currentNode != None:
-            self.colorHandler.colorKeys(currentNode)
-              
-            if currentNode.left != None:
-                self.morseLeft.set_label(currentNode.left.value)
-            else:
-                self.morseLeft.set_label("")
-                   
-            if currentNode.right != None:
-                self.rightChild.set_label(currentNode.right.value)
-            else:
-                self.morseRight.set_label("")
-        else:
-            self.morseRoot.set_label("")
-            self.morseLeft.set_label("")
-            self.morseRight.set_label("")
-    
     def _get_root_bbox(self):
         root_window = gdk.get_default_root_window()
         args = root_window.get_position() + root_window.get_size()

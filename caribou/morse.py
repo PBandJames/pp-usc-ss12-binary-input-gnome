@@ -62,8 +62,8 @@ class Morse:
         # lower-case letters instead of upper-case; because we're using
         # l-shift and r-shift as our two buttons, it capitalizes whatever
         # we type. We'll start with caps-lock on to reverse that.
-        self.vk.press_keycode(66)    # 66 is capslock
-        self.vk.release_keycode(66)
+        #self.vk.press_keycode(66)    # 66 is capslock
+        #self.vk.release_keycode(66)
 
     def registerListener(self, callback):
         self.tree_update_callback = callback
@@ -151,6 +151,8 @@ class Morse:
                         self.select_state = True
                         #self.send_unicode(self.mt.current_node.value)
                         self.tree_update_callback(self.mt.get_current_node(), True)
+                        if self.mt.get_current_node().value == "num_punct" or self.mt.get_current_node().value == "abc":
+                            self.mt.switch_trees()
                         self.mt.reset()
                         self.tree_update_callback(self.mt.get_current_node(), False)
                     else:
@@ -166,6 +168,8 @@ class Morse:
                         self.select_state = True
                         #self.send_unicode(self.mt.current_node.value)
                         self.tree_update_callback(self.mt.get_current_node(), True)
+                        if self.mt.get_current_node().value == "num_punct" or self.mt.get_current_node().value == "abc":
+                            self.mt.switch_trees()
                         self.mt.reset()
                         self.tree_update_callback(self.mt.get_current_node(), False)
                     else:

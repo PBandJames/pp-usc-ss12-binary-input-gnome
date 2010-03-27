@@ -31,6 +31,11 @@ class ColorHandler:
     def addButton(self, button, label):
         if self.buttonList.get(label) == None:
             self.buttonList[label] = button
+        #if label == "num_punc":
+            #self.setColor(button, ColorOptions.morseLeftNode)
+        if label == "abc":
+            print "sawabc"
+            #self.setColor(button, ColorOptions.morseRightNode)
 
     def setColorFromEncodedChar(self, encodedchar, colorOption):
         char = unichr(encodedchar)

@@ -113,7 +113,7 @@ class CaribouKeyboard(gtk.Frame):
 	colorHandler = colorhandler.ColorHandler()
 
         def __init__(self, kdbdef):
-
+            count = 1
             self.layers, self.switch_layer_buttons = [], []
             for layer in kdbdef.layers:
                 layervbox = gtk.VBox(homogeneous = True)
@@ -126,6 +126,7 @@ class CaribouKeyboard(gtk.Frame):
                     for key in row:
                         # check if the key is defined by a string or a tuple
                         if isinstance(key, str):
+                            #print key
                             if key == "pf":
                                 # preferences key
                                 button = gtk.Button()
@@ -145,6 +146,8 @@ class CaribouKeyboard(gtk.Frame):
                                 button.connect("clicked", self._send_unicode, char)
                                 self.colorHandler.addButton(button, key);
                         elif isinstance(key, tuple):
+                            #for symbol in key:
+                                #print symbol
                             button = gtk.Button(key[0])
                             button.set_use_underline(False)
 
@@ -154,7 +157,10 @@ class CaribouKeyboard(gtk.Frame):
                                 # set layer name on button and save to process later
                                 button.set_name(key[1])
                                 self.switch_layer_buttons.append(button)
-                                self.colorHandler.addButton(button, key[1]);
+                                if key[0] == "abc":
+                                    self.colorHandler.addButton(button, key[0]);
+                                else:
+                                    self.colorHandler.addButton(button, key[1]);
 				#self.colorHandler.addButton(button, colorhandler.ColorOptions.standard) we don't color this currently
                             else:
                                 # regular key

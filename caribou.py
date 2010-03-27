@@ -133,6 +133,12 @@ class Caribou:
             # TODO: implement keyboard scanning
             pass 
         elif event.event_string == "Control_R":
+            # The following is a hack to make this program initially type with
+            # lower-case letters instead of upper-case; because we're using
+            # l-shift and r-shift as our two buttons, it capitalizes whatever
+            # we type. We'll start with caps-lock on to reverse that.
+            #self.vk.press_keycode(66)    # 66 is capslock
+            #self.vk.release_keycode(66)
             if debug == True:
                 print "quitting ..."
             result = pyatspi.Registry.deregisterEventListener(self.on_text_caret_moved, "object:text-caret-moved")
@@ -162,12 +168,6 @@ class Caribou:
             result = pyatspi.Registry.deregisterKeystrokeListener(self.on_key_up, mask=None, kind=(pyatspi.KEY_RELEASED_EVENT,))
             if debug == True:
                 print "deregisterKeystrokeListener"
-            # The following is a hack to make this program initially type with
-            # lower-case letters instead of upper-case; because we're using
-            # l-shift and r-shift as our two buttons, it capitalizes whatever
-            # we type. We'll start with caps-lock on to reverse that.
-            self.vk.press_keycode(66)    # 66 is capslock
-            self.vk.release_keycode(66)
             gtk.main_quit()
 
 def usage():

@@ -21,7 +21,7 @@ class MorseTree:
     def reset(self):
         if self.current_tree == "alpha":
             self.current_node = self.alpha_root
-        if self.current_tree == "num_punc":
+        if self.current_tree == "num_punct":
             self.current_node = self.num_punct_root
 
     def dot(self):
@@ -43,9 +43,9 @@ class MorseTree:
 
     def switch_trees(self):
         if self.current_tree == "alpha":
-            self.current_tree = "num_punc"
+            self.current_tree = "num_punct"
             self.current_node = self.num_punct_root
-        elif self.current_tree == "num_punc":
+        elif self.current_tree == "num_punct":
             self.current_tree = "alpha"
             self.current_node = self.alpha_root
 
@@ -121,7 +121,7 @@ def get_morse_tree():
 
     # control keys (pref/num and punctuation)
     node_pf = TreeNode("pf");
-    node_num_punc = TreeNode("num_punc")
+    node_num_punct = TreeNode("num_punct")
     node_abc = TreeNode("abc")
 
     # first level
@@ -169,7 +169,7 @@ def get_morse_tree():
     node_g.right = node_q
 
     node_o.left = node_pf
-    node_o.right = node_num_punc
+    node_o.right = node_num_punct
 
     # second tree
     node_abc.left = node_period
