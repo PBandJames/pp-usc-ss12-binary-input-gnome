@@ -203,7 +203,6 @@ class CaribouKeyboard(gtk.Frame):
         # end FIXME
 
     def _change_layer(self, widget, data):
-        print data
         self.remove(self.get_child())
         self.add(data)
         self.show_all()
