@@ -1,0 +1,25 @@
+Running Caribou
+===============
+
+cd src
+python ./caribou.py --debug
+
+When an editable text widget has focus, a keyboard should pop up. There are
+still some problems with the text focus detection and keyboard placement.
+
+Use the right control key (Control_R) to quit caribou. 
+
+
+
+
+Running Caribou with Binary Input Enabled
+===============
+
+cd src
+python ./caribou.py -b
+
+Caribou will start as normal and run as normal, except it will now accept
+binary input.
+
+Detailed instructions on the binary input method can be found here:
+http://code.google.com/p/pp-usc-ss12-binary-input-gnome/wiki/BinaryInputForGNOMECaribou
