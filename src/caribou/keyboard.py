@@ -5,6 +5,12 @@
 # Copyright (C) 2009 Adaptive Technology Resource Centre
 #  * Contributor: Ben Konrath <ben@bagu.org>
 # Copyright (C) 2009 Eitan Isaacson <eitan@monotonous.org>
+# Copyright (C) 2010 John Kim <kim19@usc.edu>
+# Copyright (C) 2010 Justin Lei <lei.justin@gmail.com>
+# Copyright (C) 2010 Matthew Michihara <michihar@usc.edu>
+# Copyright (C) 2010 James Myoung <jkmyoung@usc.edu>
+# Copyright (C) 2010 Benjamin Walker <bwwalker@usc.edu>
+# Copyright (C) 2010 Michael Wei <mikejwei@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU Lesser General Public License as published by the
@@ -56,7 +62,7 @@ class KeyboardPreferences:
         layout_combo.pack_start(cell, True)
         layout_combo.add_attribute(cell, 'text', 0)
 
-		# Testing stuff here
+		# Setup binary input checkbutton handler.
         binary_input_checkbutton = builder.get_object("checkbutton_binaryinput")
         binary_input_checkbutton.connect("toggled", self.binary_input_handler)
 
@@ -100,7 +106,6 @@ class KeyboardPreferences:
     # Switches binary mode when the check box is toggled.	
     def binary_input_handler(self, widget, data=None):
 	    #do stuff here.
-        #binary = not binary
 		print "binary input checkbutton toggled"
 
 class CaribouKeyboard(gtk.Frame):
@@ -145,13 +150,8 @@ class CaribouKeyboard(gtk.Frame):
                                 button.connect("clicked", self._send_unicode, char)
                                 self.colorHandler.addButton(button, key);
                         elif isinstance(key, tuple):
-                            #for symbol in key:
-                                #print symbol
                             button = gtk.Button(key[0])
                             button.set_use_underline(False)
-
-                            #if key[1] == 65408: #this is the space character
-                              #self.colorHandler.addButton(button, key[1]);
 
                             # check if this key is a layer switch key or not
                             if isinstance(key[1], str):
@@ -163,12 +163,10 @@ class CaribouKeyboard(gtk.Frame):
                                     self.colorHandler.addButton(button, key[0]);
                                 else:
                                     self.colorHandler.addButton(button, key[1]);
-				#self.colorHandler.addButton(button, colorhandler.ColorOptions.standard) we don't color this currently
                             else:
                                 # regular key
                                 button.connect("clicked", self._send_keysym, key[1])				
                                 self.colorHandler.addButton(button, key[1]);
-				#self.colorHandler.addButton(button, colorhandler.ColorOptions.test) we don't color this currently
 			
                         else:
                             pass # TODO: throw error here
@@ -184,8 +182,6 @@ class CaribouKeyboard(gtk.Frame):
         def _send_unicode(self, widget, char):
             self.vk.press_unicode(char)
             self.vk.release_unicode(char)
-	    #test the colorHandler by coloring the button that just got pressed
-	    #self.colorHandler.setColorFromEncodedChar(char, colorhandler.ColorOptions.test)
 
         def _send_keysym(self, widget, char):
             self.vk.press_keysym(char)
